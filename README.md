@@ -1,232 +1,69 @@
-# Aim Lab 练枪模拟器 (CS2 Edition)
+# Aim Lab — FPS Aim Trainer
 
-一个基于 Pygame 的 FPS 瞄准训练模拟器，具备数据分析和自动化报告生成功能。
+> A Pygame-based FPS aim trainer with CS2-style target modes, crosshair customization,
+> hit tracking, Matplotlib charts and automatic Word report generation.
 
-**🎯 新增 CS2 模式：**
-- 同屏最多 4 个静止靶子
-- 击破后立即生成新靶子
-- CS2 风格评级系统（S+ 到 F）
-- 实时计时，时间作为核心评级因素
+![Python](https://img.shields.io/badge/Python-3.8+-blue)
+![Pygame](https://img.shields.io/badge/Pygame-2.5+-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-lightgrey)
 
-**🎨 新增准星系统：**
-- 8 种准星风格（点状、十字、圆形、传统、T 字、方形、菱形、三角）
-- 按 C 键快速切换
-- 类似 CS2 5E 平台的准星配置
-- 实时显示当前准星名称
+## Features
 
-**⚡ 专业修复（v4.0）：**
-- ✅ 1:1 无延迟准星输入
-- ✅ 防重叠靶子生成逻辑
-- ✅ 纳秒级高精度计时
-- ✅ 准确的偏移率计算
+- **CS2 mode** — up to 4 concurrent static targets, instant respawn, S+ to F ranking
+- **8 crosshair styles** — press <kbd>C</kbd> to cycle (dot, cross, circle, T, square, diamond, triangle)
+- **Target types** — normal, flick, tracking, headshot targets with distinct colors and scores
+- **Particle effects** — explosion particles, combo multiplier, headshot glow, floating hit markers
+- **Data analytics** — tracks every click (timestamp, coordinates, result), computes TTK, accuracy, offset
+- **Visual reports** — Matplotlib heatmap, reaction-time chart, accuracy pie chart; Word report export
 
-**🎨 电竞美学（v5.0）：**
-- ✅ 深邃蓝灰背景 + 全息网格
-- ✅ 赛博荧光靶子（5 层立体结构）
-- ✅ 磨砂玻璃 UI 面板
-- ✅ Hit Marker 命中反馈（200ms 渐隐）
-- ✅ 爆头金色圆圈特效
+## Quick Start
 
-**🚀 终极科技风（v6.0）：**
-- ✅ 动态渐变背景（Valorant 风格）
-- ✅ 呼吸灯网格系统
-- ✅ 粒子爆炸特效
-- ✅ 连击系统（Combo ×N）
-- ✅ 浮动文字动画（HEADSHOT!）
-- ✅ 现代化渐变 HUD
-- ✅ 炫酷评级界面
-
----
-
-## 版本说明
-
-**当前版本**：v6.0 Ultimate Tech Edition（终极科技风）
-
-**运行方式**：
-```bash
-# 运行终极科技风版本
-python main.py
-
-# 运行经典版本（修改 main.py）
-# from game_manager_modern import GameManager
-# 改为 from game_manager import GameManager
-```
-
-## 项目信息
-
-- **课程**: 面向对象程序设计
-- **提交日期**: 2026-06-19
-- **小组成员**: 请在此处填写姓名
-- **学号**: 请在此处填写学号
-
-## 功能特性
-
-### 核心玩法
-- ✅ 自定义准星系统（平滑跟随鼠标）
-- ✅ 多种靶子类型（普通靶、闪现靶、追踪靶）
-- ✅ 实时计分和生命值系统
-- ✅ 限时挑战模式（60 秒）
-
-### 数据分析
-- ✅ 完整的数据追踪（每次点击的时间、坐标、结果）
-- ✅ Pandas 数据清洗和分析
-- ✅ 关键指标计算（TTK、命中率、偏移率）
-
-### 可视化报告
-- ✅ Matplotlib 图表生成（热力图、反应时间图、命中率饼图）
-- ✅ Word 报告自动生成（包含数据表格和图表）
-- ✅ 专业的报告格式和排版
-
-## 技术栈
-
-- **Python**: 3.8+
-- **Pygame**: 2.5.0+
-- **Pandas**: 2.0.0+
-- **Matplotlib**: 3.7.0+
-- **python-docx**: 1.0.0+
-- **NumPy**: 1.24.0+
-
-## 安装步骤
-
-1. 确保已安装 Python 3.8 或更高版本
-
-2. 安装依赖：
 ```bash
 pip install -r requirements.txt
-```
-
-3. 运行游戏：
-```bash
 python main.py
 ```
 
-## 操作说明
+### Controls
 
-### 游戏控制
-- **鼠标移动**: 控制准星
-- **鼠标左键**: 射击
-- **C 键**: 切换准星风格（8 种）
-- **空格键**: 开始游戏 / 返回菜单
-- **ESC**: 退出游戏
+| Key | Action |
+|-----|--------|
+| Mouse move | Aim crosshair |
+| Left click | Shoot |
+| <kbd>C</kbd> | Cycle crosshair style |
+| <kbd>Space</kbd> | Start / return to menu |
+| <kbd>Esc</kbd> | Quit |
 
-### 靶子类型（CS2 模式）
-- **红色普通靶**: 静止不动，100 分
-- **绿色闪现靶**: 静止靶子，150 分
-- **蓝色追踪靶**: 静止靶子，200 分
-
-**注意**: CS2 模式下所有靶子都静止不动，专注于精准定位训练。
-
-## 项目结构
+## Project Structure
 
 ```
-aimlab/
-├── main.py              # 主程序入口
-├── config.py            # 配置文件
-├── game_manager.py      # 游戏管理器（组员 A）
-├── target.py            # Target 基类（组员 C）
-├── target_types.py      # 靶子派生类（组员 B）
-├── crosshair.py         # 准星类（组员 B）
-├── data_tracker.py      # 数据追踪器（组员 C）
-├── data_analyzer.py     # 数据分析器（组员 A）
-├── data_visualizer.py   # 数据可视化器（组员 B）
-├── report_generator.py  # 报告生成器（组员 C）
-├── requirements.txt     # 依赖列表
-├── AI 使用说明.txt       # AI 使用文档
-├── README.md           # 本文件
-├── assets/             # 资源文件目录
-├── reports/            # 生成的报告目录
-└── data/               # 数据文件目录
+├── main.py               # Entry point
+├── config.py             # Game constants, colors, screen settings
+├── game_manager_modern.py# Modern game loop (default)
+├── game_manager.py       # Classic game loop
+├── target.py             # Target base class
+├── target_types.py       # Flick / Tracking / Headshot targets
+├── crosshair.py          # Crosshair rendering
+├── particles.py          # Particle system
+├── maps.py               # Map definitions
+├── data_tracker.py       # Per-click data recording
+├── data_analyzer.py      # Pandas analysis (TTK, accuracy, offset)
+├── data_visualizer.py    # Matplotlib charts
+├── report_generator.py   # Word (.docx) report generation
+└── requirements.txt
 ```
 
-## 面向对象设计亮点
+## Architecture
 
-### 1. 继承与多态
-- `Target` 基类定义通用接口
-- `FlickTarget`、`TrackingTarget` 重写 `update()` 方法
-- `get_score()` 方法的多态实现
+The game follows an object-oriented design:
 
-### 2. 封装
-- 每个类都有明确的职责
-- 私有数据通过公共方法访问
-- 配置参数集中管理
+- **Inheritance & polymorphism** — `Target` base class with `FlickTarget` and `TrackingTarget` overriding `update()`
+- **State pattern** — `GameState` enum switches between menu, playing, and game-over
+- **Single responsibility** — `GameManager`, `DataTracker`, `DataAnalyzer`, `DataVisualizer`, `ReportGenerator` are decoupled
 
-### 3. 状态模式
-- `GameState` 枚举管理游戏状态
-- 不同状态下行为自动切换
+## Tech Stack
 
-### 4. 单一职责
-- `GameManager`: 游戏流程控制
-- `DataTracker`: 数据记录
-- `DataAnalyzer`: 数据分析
-- `DataVisualizer`: 数据可视化
-- `ReportGenerator`: 报告生成
+Python · Pygame · Pandas · Matplotlib · NumPy · python-docx
 
-## 代码统计
+## License
 
-| 文件 | 行数 | 负责人 |
-|------|------|--------|
-| game_manager.py | 280+ | 组员 A |
-| target.py | 60+ | 组员 C |
-| target_types.py | 120+ | 组员 B |
-| crosshair.py | 50+ | 组员 B |
-| data_tracker.py | 70+ | 组员 C |
-| data_analyzer.py | 130+ | 组员 A |
-| data_visualizer.py | 150+ | 组员 B |
-| report_generator.py | 200+ | 组员 C |
-| config.py | 40+ | 全员 |
-| **总计** | **1100+** | - |
-
-**每人代码行数均超过 150 行，满足课程要求。**
-
-## 提交材料清单
-
-- [x] 源代码文件夹
-- [x] 研修报告（PDF）
-- [x] 程序演示视频
-- [x] 工作照片（3 张以内）
-- [x] AI 使用说明文档
-- [x] 生成的示例报告
-
-## 开发日志
-
-### 第 1 周（2026-05-26 ~ 2026-06-01）
-- ✅ 项目启动，需求分析
-- ✅ 完成基础类设计
-- ✅ 实现游戏主循环
-
-### 第 2 周（2026-06-02 ~ 2026-06-08）
-- ✅ 实现多态靶子系统
-- ✅ 添加数据追踪功能
-- ✅ 完善游戏机制
-
-### 第 3 周（2026-06-09 ~ 2026-06-15）
-- ✅ 完成数据分析模块
-- ✅ 实现可视化图表
-- ✅ 生成 Word 报告
-
-### 第 4 周（2026-06-16 ~ 2026-06-18）
-- [ ] 系统测试和调试
-- [ ] 准备提交材料
-- [ ] 撰写研修报告
-
-## 常见问题
-
-### Q: 游戏窗口太大/太小
-A: 修改 `config.py` 中的 `SCREEN_WIDTH` 和 `SCREEN_HEIGHT`
-
-### Q: 靶子生成太快/太慢
-A: 修改 `config.py` 中的 `TARGET_SPAWN_RATE`
-
-### Q: 报告生成失败
-A: 确保 `reports` 目录存在且有写入权限
-
-### Q: 图表显示乱码
-A: 确保系统安装了中文字体，或修改 Matplotlib 字体配置
-
-## 许可证
-
-本项目仅用于课程作业，请勿用于商业用途。
-
-## 致谢
-
-感谢 AI 辅助编程工具提供的代码建议和调试帮助！
+MIT
